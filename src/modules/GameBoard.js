@@ -7,10 +7,17 @@ export default class GameBoard{
   }
   place(x, y, len){
     if(this.ships.length>4) return;
-    let s = new Ship(len);
+    if(x+len>10 || y>10) return;
+    let s = new Ship(x, y, len);
     this.ships.push(s);
     for(let i=x; i<=x+len; i++){
-      this.board[x][y] = s;
+      this.board[i][y] = s;
+    }
+  }
+  receiveAttack(x, y){
+    let s = this.board[x][y];
+    if(s){
+      s.hit(x,y);
     }
   }
 }

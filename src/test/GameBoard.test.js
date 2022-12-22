@@ -46,6 +46,22 @@ test('check placement of multiple wrong ships', ()=>{
   expect(checkShipOnBoard(gb, x1, y1, l1, s2)).toBe(false);
   expect(checkShipOnBoard(gb, x2, y2, l2, s1)).toBe(false);
 })
-test('aware of space limits', ()=>{
+test('aware of vertical space limits', ()=>{
+  let gb = new GameBoard();
+  let x=8, y=6, l=4;
+  gb.place(x, y, l);
+  let s1 = gb.ships[0];
+  expect(checkShipOnBoard(gb, x, y, 1, s1)).toBe(false);
+})
+
+test("receiveAttack on ship", ()=>{
+  let gb = new GameBoard();
+  let x=3, y=4, l=4;
+  gb.place(x, y, l);
+  let s1 = gb.ships[0];
+  gb.receiveAttack(4, 4);
+  expect(s1.body[1].hit).toBe(true);
+})
+test("Multi attack on same place",()=>{
   
 })
