@@ -10,14 +10,19 @@ export default class GameBoard{
     if(x+len>10 || y>10) return;
     let s = new Ship(x, y, len);
     this.ships.push(s);
-    for(let i=x; i<=x+len; i++){
+    for(let i=x; i<x+len; i++){
       this.board[i][y] = s;
     }
   }
   receiveAttack(x, y){
     let s = this.board[x][y];
-    if(s){
-      s.hit(x,y);
-    }
+    if(s instanceof Ship){
+      s.hit(x,y); return;
+    }this.board[x][y] = 1;
+  }
+  isAllSink(){
+    for(let s of this.ships)
+    if(!s.isSink()) return false;
+    return true;
   }
 }
