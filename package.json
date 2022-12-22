@@ -18,7 +18,10 @@
   "homepage": "https://github.com/Dark-WizZ/BattleShip#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
+    "css-loader": "^6.7.3",
+    "style-loader": "^3.3.1",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   }
 }
