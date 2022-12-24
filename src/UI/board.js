@@ -5,7 +5,7 @@ export default class Board{
         let tar = this.plotSelector(board, part);
         if(part.hit)
         tar.style.background = 'rgb(241, 107, 92)'
-        else //if(board.className!='board2')
+        else if(board.className!='board2')
         tar.style.background = 'rgb(174, 241, 92)'
       }
       if(ship.isSink()) ship.body.forEach(part => {

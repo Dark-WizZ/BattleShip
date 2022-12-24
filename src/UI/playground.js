@@ -1,11 +1,13 @@
 import GameBoard from "../modules/GameBoard";
 import CreateShip from "./createShips";
 import Board from "./board";
+import AI from "../modules/AI/ai";
 
 export default class Playground{
   static init(){
     this.player1Board = CreateShip.gb;
-    this.aiBoard = new GameBoard('AI');
+    this.ai = new AI();
+    this.aiBoard = this.ai.gb;
     this.domCache();
     this.render();
     this.bindEvent();
@@ -32,9 +34,16 @@ export default class Playground{
     })
   }
   static plotClick(data, plot){
+    let z = plot.getAttribute('cliked');
+    console.log(z)
+    if(plot.hasAttribute('clicked')) return;
+    plot.setAttribute('clicked', true);
+    console.log(plot);
     let x = plot.getAttribute('x');
     let y = plot.getAttribute('y');
     data.receiveAttack(x, y);
     Board.boardRender(plot.parentElement, data);
+    this.ai.move(this.player1Board);
+    Board.boardRender(this.board1, this.player1Board);
   }
 }
