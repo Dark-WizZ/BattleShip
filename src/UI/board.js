@@ -3,10 +3,10 @@ export default class Board{
     for(let ship of data.ships){
       for(let part of ship.body){
         let tar = this.plotSelector(board, part);
-        if(!part.hit)
-        tar.style.background = 'rgb(174, 241, 92)'
-        else
+        if(part.hit)
         tar.style.background = 'rgb(241, 107, 92)'
+        else //if(board.className!='board2')
+        tar.style.background = 'rgb(174, 241, 92)'
       }
       if(ship.isSink()) ship.body.forEach(part => {
         let tar = this.plotSelector(board, part )

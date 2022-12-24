@@ -9,7 +9,7 @@ export default class CreateShip{
     this.bindEvent();
   }
   static render(){
-    this.gb = new GameBoard();
+    this.gb = new GameBoard("Player1");
     Board.boardCreate(this.createrBoard);
     this.domReload();
   }

@@ -1,12 +1,15 @@
 import Ship from '../modules/ship'
+import Player from './player';
 
 export default class GameBoard{
-  constructor(){
+  constructor(name){
+    this.player = new Player(name);
     this.board = new Array(10).fill().map(()=>new Array(10).fill());
     this.ships = new Array();
+    if(name=='AI') this.autoplace();
   }
   place(x, y, len){
-    if(this.ships.length>4 || len<=0) return;
+    if(this.ships.length>=5 || len<=0) return;
     if(x+len>10 || y>10) return;
     let s = new Ship(x, y, len);
     this.ships.push(s);
@@ -24,5 +27,13 @@ export default class GameBoard{
     for(let s of this.ships)
     if(!s.isSink()) return false;
     return true;
+  }
+  autoplace(){
+    while(this.ships.length<5){
+      let l = Math.floor(Math.random()*4)+2;
+      let x = Math.floor(Math.random()*10);
+      let y = Math.floor(Math.random()*10);
+      this.place(x, y, l);
+    }
   }
 }
