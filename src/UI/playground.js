@@ -1,8 +1,10 @@
 import GameBoard from "../modules/GameBoard";
 import CreateShip from "./createShips";
+import Board from "./board";
 
 export default class Playground{
   static init(){
+    this.gameboard = CreateShip.gb;
     this.domCache();
     this.render();
     this.bindEvent();
@@ -14,9 +16,9 @@ export default class Playground{
     this.board2 = document.querySelector('.board2');
   }
   static render(){
-    CreateShip.boardCreate(this.board1);
-    CreateShip.boardCreate(this.board2);
-    CreateShip.boardRender(this.board1);
+    Board.boardCreate(this.board1);
+    Board.boardCreate(this.board2);
+    Board.boardRender(this.board1, this.gameboard);
     this.domReload();
   }
   static domReload(){
@@ -30,7 +32,7 @@ export default class Playground{
   static plotClick(plot){
     let x = plot.getAttribute('x');
     let y = plot.getAttribute('y');
-    CreateShip.gb.receiveAttack(x, y);
-    CreateShip.boardRender(this.board1);
+    this.gameboard.receiveAttack(x, y);
+    Board.boardRender(this.board1, this.gameboard);
   }
 }
