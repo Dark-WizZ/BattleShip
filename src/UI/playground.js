@@ -35,10 +35,8 @@ export default class Playground{
   }
   static plotClick(data, plot){
     let z = plot.getAttribute('cliked');
-    console.log(z)
     if(plot.hasAttribute('clicked')) return;
     plot.setAttribute('clicked', true);
-    console.log(plot);
     let x = plot.getAttribute('x');
     let y = plot.getAttribute('y');
     data.receiveAttack(x, y);
