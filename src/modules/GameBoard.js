@@ -6,7 +6,7 @@ export default class GameBoard{
     this.ships = new Array();
   }
   place(x, y, len){
-    if(this.ships.length>4) return;
+    if(this.ships.length>4 || len<=0) return;
     if(x+len>10 || y>10) return;
     let s = new Ship(x, y, len);
     this.ships.push(s);

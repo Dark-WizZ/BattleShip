@@ -3,11 +3,11 @@ body, html{
 }
 .outer_layout{
   display: grid;
-  align-items: center;
+  place-items: center;
   height: 100%;
 }
 .inner_layout{
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 1em;
   justify-content: space-around;
@@ -27,4 +27,20 @@ body, html{
 }
 .demo{
   color:rgb(69, 216, 249);
+}
+.creater_board{
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  height: 400px;
+  width: 400px;
+  border: 1px solid blue;
+}
+.creater_layout{
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr auto;
+  gap: 2em;
+}
+button{
+  height: fit-content;
 }
