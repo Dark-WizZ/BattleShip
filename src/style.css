@@ -1,3 +1,30 @@
-*{
-  color: red;
+body, html{
+  height: 100%;
+}
+.outer_layout{
+  display: grid;
+  align-items: center;
+  height: 100%;
+}
+.inner_layout{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  justify-content: space-around;
+}
+.board1, .board2{
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  height: 300px;
+  width: 300px;
+  border: 1px solid blue;
+}
+.plot{
+  border: 1px solid red;
+}
+.plot:hover{
+  background: rgb(204, 204, 204);
+}
+.demo{
+  color:rgb(69, 216, 249);
 }

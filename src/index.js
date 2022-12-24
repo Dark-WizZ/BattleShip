@@ -1,4 +1,4 @@
 import './style.css'
+import ui from './UI/ui'
 
-const doc = document.querySelector('body');
-doc.textContent += 'hi im akram i have no brain'
+ui.init();
