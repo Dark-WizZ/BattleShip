@@ -1,7 +1,10 @@
 *{
   text-align: center;
+  box-sizing: border-box;
 }
 body, html{
+  padding:0;
+  margin:0;
   height: 100%;
 }
 .outer_layout{
@@ -44,11 +47,20 @@ body, html{
 }
 button{
   height: fit-content;
+  background-color: #1a73e8;
+  color: white;
+  border-radius: 2px;
+  border:none;
+  padding:0.3rem;
 }
 .heading{
   font-size: 2rem;
   padding: 1rem;
 }
-.endpoint_text{
+.end_point_txt{
   display:none;
+}
+button:hover{
+  border: 1px solid #00357a;
+  box-shadow: inset;
 }
