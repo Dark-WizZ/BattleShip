@@ -8,15 +8,16 @@ export default class GameBoard{
     this.ships = new Array();
   }
   place(x, y, len){
-    if(this.ships.length>=5 || len<=0) return;
-    if(x+len>10 || y>10) return;
-    if(this.board[x][y]) return;
+    if(this.ships.length>=5 || len<=0) return false;
+    if(x+len>10 || y>10) return false;
+    if(this.board[x][y]) return false;
     let coll = (this.isColloidal(x, y, len))
     if(coll) return;
     let s = new Ship(x, y, len);
     this.ships.push(s);
     for(let i=x; i<x+len; i++)
     this.board[i][y] = s;
+    return true;
   }
   receiveAttack(x, y){
     let s = this.board[x][y];

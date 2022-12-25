@@ -34,14 +34,15 @@ export default class Playground{
     })
   }
   static plotClick(data, plot){
-    let z = plot.getAttribute('cliked');
     if(plot.hasAttribute('clicked')) return;
     plot.setAttribute('clicked', true);
     let x = plot.getAttribute('x');
     let y = plot.getAttribute('y');
     data.receiveAttack(x, y);
     Board.boardRender(plot.parentElement, data);
+    if(this.aiBoard.isAllSink()) alert("Player WON!")
     this.ai.move(this.player1Board);
     Board.boardRender(this.board1, this.player1Board);
+    if(this.player1Board.isAllSink()) alert("AI WON!")
   }
 }

@@ -34,16 +34,22 @@ export default class CreateShip{
   static plotClick(e){
     let x = parseInt(e.getAttribute('x'));
     let y = parseInt(e.getAttribute('y'));
-    if(this.oddClick){
+    if(this.oddClick){ this.startBlock = e;
+      e.style.background = '#fbbf12';
       this.start = {x, y};
-      this.oddClick = false;
-      return;
-    }
+      this.oddClick = false; return;}
     this.end = {x, y};
     let len = this.end.x - this.start.x + 1;
-    this.gb.place(this.start.x, this.start.y, len);
+    let isPlaced = this.gb.place(this.start.x, this.start.y, len);
+    if(!isPlaced) this.startBlock.style.background = 'none';
     Board.boardRender(this.createrBoard, this.gb);
     this.oddClick = true;
+  }
+  static oddClicked(e){
+    this.startBlock = e;
+    e.style.background = '#fbbf12';
+    this.start = {x, y};
+    this.oddClick = false;
   }
   static nextBtnClick(){
     this.createrLayout.style.display = 'none';

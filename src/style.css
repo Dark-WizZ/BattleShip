@@ -1,3 +1,6 @@
+*{
+  text-align: center;
+}
 body, html{
   height: 100%;
 }
@@ -7,17 +10,19 @@ body, html{
   height: 100%;
 }
 .inner_layout{
+  width:100%;
   display: none;
   flex-wrap: wrap;
-  gap: 1em;
-  justify-content: space-around;
+  gap:1rem;
+  justify-content:space-evenly;
 }
-.board1, .board2{
+.board1, .board2, .creater_board{
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   height: 300px;
   width: 300px;
-  border: 1px solid blue;
+  border: 3px solid red;
+  border-radius: 0.2rem;
 }
 .plot{
   border: 1px solid red;
@@ -29,18 +34,21 @@ body, html{
   color:rgb(69, 216, 249);
 }
 .creater_board{
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
   height: 400px;
   width: 400px;
-  border: 1px solid blue;
 }
 .creater_layout{
   display: grid;
   place-items: center;
-  grid-template-columns: 1fr auto;
   gap: 2em;
 }
 button{
   height: fit-content;
+}
+.heading{
+  font-size: 2rem;
+  padding: 1rem;
+}
+.endpoint_text{
+  display:none;
 }
