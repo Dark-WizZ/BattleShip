@@ -12,8 +12,7 @@ export default class GameBoard{
     if(x+len>10 || y>10) return;
     if(this.board[x][y]) return;
     let coll = (this.isColloidal(x, y, len))
-    console.log(coll);
-    if(coll) {console.log('col');return;}
+    if(coll) return;
     let s = new Ship(x, y, len);
     this.ships.push(s);
     for(let i=x; i<x+len; i++)
@@ -37,8 +36,6 @@ export default class GameBoard{
         let newEnd = x+len-1;
         let start = s.body[0].coord.x;
         let end = s.body[0].coord.x + s.len - 1;
-        console.log(newStart, newEnd);
-        console.log(start, end)
         if((newStart < start) && (newEnd >= start)) return true;
         if((newStart > start) && (newStart<=end)) return true
       }

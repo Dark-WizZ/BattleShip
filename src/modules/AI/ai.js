@@ -15,20 +15,19 @@ export default class AI{
     }
   }
   move(board){
-    let x, y, bd;
+    let x, y;
     do{
-      let hit=false
       x = Math.floor(Math.random()*10);
       y = Math.floor(Math.random()*10);
-      bd = board.board[x][y];
-    if(bd instanceof Ship){
-      bd.body.forEach(e=>{
-        if(e.hit && e.coord.x == x) hit=true;
-      })
-      if(hit)continue;
-      else break;
-    }
-    }while(bd);
+    }while(!this.isValidMove(board.board, x, y));
     board.receiveAttack(x, y);
+  }
+
+  isValidMove(board, x, y){
+    if(!board[x][y]) return true;
+    if(board[x][y] instanceof Ship){
+      for(let ship of board[x][y].body)
+      if(ship.coord.x == x && !ship.hit) return true;
+    }return false;
   }
 }
