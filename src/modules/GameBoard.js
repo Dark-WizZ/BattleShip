@@ -10,11 +10,14 @@ export default class GameBoard{
   place(x, y, len){
     if(this.ships.length>=5 || len<=0) return;
     if(x+len>10 || y>10) return;
+    if(this.board[x][y]) return;
+    let coll = (this.isColloidal(x, y, len))
+    console.log(coll);
+    if(coll) {console.log('col');return;}
     let s = new Ship(x, y, len);
     this.ships.push(s);
-    for(let i=x; i<x+len; i++){
-      this.board[i][y] = s;
-    }
+    for(let i=x; i<x+len; i++)
+    this.board[i][y] = s;
   }
   receiveAttack(x, y){
     let s = this.board[x][y];
@@ -26,5 +29,20 @@ export default class GameBoard{
     for(let s of this.ships)
     if(!s.isSink()) return false;
     return true;
+  }
+  isColloidal(x, y, len){
+    for(let s of this.ships){
+      if(s.body[0].coord.y==y){
+        let newStart = x;
+        let newEnd = x+len-1;
+        let start = s.body[0].coord.x;
+        let end = s.body[0].coord.x + s.len - 1;
+        console.log(newStart, newEnd);
+        console.log(start, end)
+        if((newStart < start) && (newEnd >= start)) return true;
+        if((newStart > start) && (newStart<=end)) return true
+      }
+    }
+    return false;
   }
 }

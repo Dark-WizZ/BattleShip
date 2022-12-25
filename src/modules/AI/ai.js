@@ -8,7 +8,7 @@ export default class AI{
   }
   autoplace(){
     while(this.gb.ships.length<5){
-      let l = Math.floor(Math.random()*4)+2;
+      let l = Math.floor(Math.random()*4)+3;
       let x = Math.floor(Math.random()*10);
       let y = Math.floor(Math.random()*10);
       this.gb.place(x, y, l);

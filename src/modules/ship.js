@@ -1,5 +1,6 @@
 export default class Ship{
   constructor(x, y, l){
+    this.len = l;
     this.body = new Array();
     for(let i=0; i<l; i++){
       this.body.push(new Part(x+i, y));
