@@ -38,6 +38,8 @@ export default class Greetings{
   }
   static reviewClk(){
     this.greetingsLayout.style.display = 'none';
+    let cloneBoard = Playground.aiBoard.cloneNode(true);
+    Playground.board1.replaceChild(cloneBoard, Playground.aiBoard);
     Playground.revealBtn.style.display='block';
   }
 }
