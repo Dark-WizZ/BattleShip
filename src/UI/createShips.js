@@ -58,7 +58,7 @@ export default class CreateShip{
     let isPlaced = this.gb.place(this.start.x, this.start.y, len);
     if(isPlaced) this.count++;
     else this.startBlock.style.background = 'none';
-    Board.boardRender(this.createrBoard, this.gb);
+    Board.boardRender(this.createrBoard, this.gb, true);
     this.startPointHead.textContent = `Select Ship ${this.count}'s Starting Point`;
     this.startPointTxt.style.display = 'block';
     this.endPointTxt.style.display = 'none';

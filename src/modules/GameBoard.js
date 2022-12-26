@@ -8,7 +8,7 @@ export default class GameBoard{
     this.ships = new Array();
   }
   place(x, y, len){
-    if(this.ships.length>=5 || len<=2) return false;
+    if(this.ships.length>=5 || len<=2 || len>6) return false;
     if(x+len>10 || y>10) return false;
     if(this.board[x][y]) return false;
     let coll = (this.isColloidal(x, y, len))

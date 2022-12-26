@@ -20,17 +20,16 @@ export default class Playground{
     this.board2 = document.querySelector('.board2');
     this.aiBoard = document.querySelector('.board1 .board');
     this.playerBoard = document.querySelector('.board2 .board');
-    this.playerScoreTxt = document.querySelector('.board1 .score');
-    this.aiScoreText = document.querySelector('.board2 .score');
     this.restartBtn = document.querySelector('.restart_btn');
     this.greetingsLayout = document.querySelector('.greetings_layout');
-    this.greetingsTxt = document.querySelector('.greeting')
+    this.greetingsTxt = document.querySelector('.greeting');
+    this.revealBtn = document.querySelector('.inner_layout .reveal');
   }
   static render(){
     Board.boardCreate(this.aiBoard);
     Board.boardCreate(this.playerBoard);
-    Board.boardRender(this.aiBoard.parentElement, this.aiData);
-    Board.boardRender(this.playerBoard.parentElement, this.playerData);
+    Board.boardRender(this.aiBoard.parentElement, this.aiData, false);
+    Board.boardRender(this.playerBoard.parentElement, this.playerData, true);
     this.domReload();
   }
   static domReload(){
@@ -41,6 +40,7 @@ export default class Playground{
       e.addEventListener('click',this.plotClick.bind(this, e))
     })
     this.restartBtn.addEventListener('click', this.restartClick.bind(this));
+    this.revealBtn.addEventListener('click', this.revealClk.bind(this));
   }
   static plotClick(plot){
     if(plot.hasAttribute('clicked')) return;
@@ -48,13 +48,16 @@ export default class Playground{
     let x = plot.getAttribute('x');
     let y = plot.getAttribute('y');
     this.aiData.receiveAttack(x, y);
-    Board.boardRender(this.aiBoard.parentElement, this.aiData);
+    Board.boardRender(this.aiBoard.parentElement, this.aiData, false);
     if(this.aiData.isAllSink()) Greetings.init('Player');
     this.ai.move(this.playerData);
-    Board.boardRender(this.playerBoard.parentElement, this.playerData);
+    Board.boardRender(this.playerBoard.parentElement, this.playerData, true);
     if(this.playerData.isAllSink()) Greetings.init('AI');
   }
   static restartClick(){
     location.reload();
+  }
+  static revealClk(){
+    Board.boardRender(this.aiBoard, this.aiData, true);
   }
 }

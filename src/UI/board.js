@@ -1,11 +1,11 @@
 export default class Board{
-  static boardRender(board, data){
+  static boardRender(board, data, reveal){
     for(let ship of data.ships){
       for(let part of ship.body){
         let tar = this.plotSelector(board, part);
         if(part.hit)
         tar.style.background = 'rgb(241, 107, 92)'
-        else if(board.className!='board1')
+        else if(reveal)
         tar.style.background = '#279847'
       }
       if(ship.isSink()) ship.body.forEach(part => {

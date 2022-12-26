@@ -1,3 +1,4 @@
+import Playground from "./playground";
 export default class Greetings{
   static init(name){
     this.player = name;
@@ -14,14 +15,12 @@ export default class Greetings{
     this.greetingsLayout = document.querySelector('.greetings_layout');
     this.greetingGif = document.querySelector('.greetings_layout .gif img');
     this.greetingMessage = document.querySelector('.greeting');
-    this.revealBtn = document.querySelector('.greetings_layout .reveal_btn');
     this.restartBtn = document.querySelector('.greetings_layout .restart_btn');
     this.reviewBtn = document.querySelector('.greetings_layout .review_btn');
   }
   static bindEvent(){
-    // this.revealBtn.addEventListener('click', this.revealClk.bind(this));
     this.restartBtn.addEventListener('click', this.restartClk);
-    // this.reviewBtn.addEventListener('click', this.reviewClk.bind(this));
+    this.reviewBtn.addEventListener('click', this.reviewClk.bind(this));
   }
   static async setGif(){
     const key = (this.player=='AI')? 'sad': 'happy'
@@ -36,5 +35,9 @@ export default class Greetings{
   static restartClk(){
     console.log("restart")
     location.reload();
+  }
+  static reviewClk(){
+    this.greetingsLayout.style.display = 'none';
+    Playground.revealBtn.style.display='block';
   }
 }
