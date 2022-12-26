@@ -19,6 +19,11 @@ export default class Playground{
     this.board2 = document.querySelector('.board2');
     this.aiBoard = document.querySelector('.board1 .board');
     this.playerBoard = document.querySelector('.board2 .board');
+    this.playerScoreTxt = document.querySelector('.board1 .score');
+    this.aiScoreText = document.querySelector('.board2 .score');
+    this.restartBtn = document.querySelector('.restart_btn');
+    this.greetingsLayout = document.querySelector('.greetings_layout');
+    this.greetingsTxt = document.querySelector('.greeting')
   }
   static render(){
     Board.boardCreate(this.aiBoard);
@@ -34,6 +39,7 @@ export default class Playground{
     this.b1Plot.forEach(e => {
       e.addEventListener('click',this.plotClick.bind(this, e))
     })
+    this.restartBtn.addEventListener('click', this.restartClick.bind(this));
   }
   static plotClick(plot){
     if(plot.hasAttribute('clicked')) return;
@@ -42,9 +48,18 @@ export default class Playground{
     let y = plot.getAttribute('y');
     this.aiData.receiveAttack(x, y);
     Board.boardRender(this.aiBoard.parentElement, this.aiData);
-    if(this.aiData.isAllSink()) alert("Player WON!");
+    if(this.aiData.isAllSink()){
+      this.greetingsTxt.textContent = `Player Won The Match`;
+      this.greetingsLayout.style.display = 'grid';
+    }
     this.ai.move(this.playerData);
     Board.boardRender(this.playerBoard.parentElement, this.playerData);
-    if(this.playerData.isAllSink()) alert("AI WON!");
+    if(this.playerData.isAllSink()){
+      this.greetingsTxt.textContent = `AI Won The Match`;
+      this.greetingsLayout.style.display = 'grid';
+    }
+  }
+  static restartClick(){
+    location.reload();
   }
 }
