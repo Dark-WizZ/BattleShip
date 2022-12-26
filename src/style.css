@@ -14,10 +14,9 @@ body, html{
 }
 .inner_layout{
   width:100%;
-  display: none;
-  flex-wrap: wrap;
-  gap:1rem;
-  justify-content:space-evenly;
+  display:none;
+  grid-template-columns: 1fr auto 1fr;
+  place-items: center;
 }
 .board, .creater_board{
   display: grid;
@@ -63,4 +62,8 @@ button{
 button:hover{
   border: 1px solid #00357a;
   box-shadow: inset;
+}
+.menu{
+  display: grid;
+  gap: 1rem;
 }

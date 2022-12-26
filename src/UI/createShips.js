@@ -76,7 +76,7 @@ export default class CreateShip{
 
   static playBtnClick(){
     this.createrLayout.style.display = 'none';
-    this.inLayout.style.display = 'flex';
+    this.inLayout.style.display = 'grid';
     Playground.init();
   }
 }
