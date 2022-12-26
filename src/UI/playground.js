@@ -5,9 +5,9 @@ import AI from "../modules/AI/ai";
 
 export default class Playground{
   static init(){
-    this.player1Board = CreateShip.gb;
+    this.playerData = CreateShip.gb;
     this.ai = new AI();
-    this.aiBoard = this.ai.gb;
+    this.aiData = this.ai.gb;
     this.domCache();
     this.render();
     this.bindEvent();
@@ -17,32 +17,34 @@ export default class Playground{
     this.inLayout = document.querySelector('.inner_layout');
     this.board1 = document.querySelector('.board1');
     this.board2 = document.querySelector('.board2');
+    this.aiBoard = document.querySelector('.board1 .board');
+    this.playerBoard = document.querySelector('.board2 .board');
   }
   static render(){
-    Board.boardCreate(this.board1);
-    Board.boardCreate(this.board2);
-    Board.boardRender(this.board1, this.player1Board);
-    Board.boardRender(this.board2, this.aiBoard)
+    Board.boardCreate(this.aiBoard);
+    Board.boardCreate(this.playerBoard);
+    Board.boardRender(this.aiBoard.parentElement, this.aiData);
+    Board.boardRender(this.playerBoard.parentElement, this.playerData);
     this.domReload();
   }
   static domReload(){
-    this.b2Plot = document.querySelectorAll('.board2 .plot');
+    this.b1Plot = document.querySelectorAll('.board1 .plot');
   }
   static bindEvent(){
-    this.b2Plot.forEach(e => {
-      e.addEventListener('click',this.plotClick.bind(this, this.aiBoard, e))
+    this.b1Plot.forEach(e => {
+      e.addEventListener('click',this.plotClick.bind(this, e))
     })
   }
-  static plotClick(data, plot){
+  static plotClick(plot){
     if(plot.hasAttribute('clicked')) return;
     plot.setAttribute('clicked', true);
     let x = plot.getAttribute('x');
     let y = plot.getAttribute('y');
-    data.receiveAttack(x, y);
-    Board.boardRender(plot.parentElement, data);
-    if(this.aiBoard.isAllSink()) alert("Player WON!")
-    this.ai.move(this.player1Board);
-    Board.boardRender(this.board1, this.player1Board);
-    if(this.player1Board.isAllSink()) alert("AI WON!")
+    this.aiData.receiveAttack(x, y);
+    Board.boardRender(this.aiBoard.parentElement, this.aiData);
+    if(this.aiData.isAllSink()) alert("Player WON!");
+    this.ai.move(this.playerData);
+    Board.boardRender(this.playerBoard.parentElement, this.playerData);
+    if(this.playerData.isAllSink()) alert("AI WON!");
   }
 }

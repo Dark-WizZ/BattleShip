@@ -19,7 +19,7 @@ body, html{
   gap:1rem;
   justify-content:space-evenly;
 }
-.board1, .board2, .creater_board{
+.board, .creater_board{
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   height: 300px;

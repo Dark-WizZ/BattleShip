@@ -11,6 +11,10 @@ module.exports = {
   },
   devServer: {
     static: './dist',
+    host: '192.168.43.75',
+    liveReload: false,
+    hot:false,
+    
   },
   module: {
     rules: [

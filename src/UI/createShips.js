@@ -9,7 +9,7 @@ export default class CreateShip{
     this.bindEvent();
   }
   static render(){
-    this.gb = new GameBoard("Player1");
+    this.gb = new GameBoard("Player");
     Board.boardCreate(this.createrBoard);
     this.domReload();
   }
@@ -75,7 +75,6 @@ export default class CreateShip{
   }
 
   static playBtnClick(){
-    console.log(0)
     this.createrLayout.style.display = 'none';
     this.inLayout.style.display = 'flex';
     Playground.init();
