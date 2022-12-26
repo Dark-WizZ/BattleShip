@@ -42,6 +42,7 @@ export default class CreateShip{
   }
 
   static plotClick(plot){
+    if(this.count>5) return;
     let x = parseInt(plot.getAttribute('x'));
     let y = parseInt(plot.getAttribute('y'));
     if(this.oddClick){
