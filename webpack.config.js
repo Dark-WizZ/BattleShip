@@ -12,6 +12,7 @@ module.exports = {
   devServer: {
     static: './dist',
     host: '192.168.43.75',
+    // below 3 lines to disable auto reload
     // liveReload: false,
     // hot:false,
     // inline:false,

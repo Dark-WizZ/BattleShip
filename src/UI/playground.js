@@ -49,16 +49,10 @@ export default class Playground{
     let y = plot.getAttribute('y');
     this.aiData.receiveAttack(x, y);
     Board.boardRender(this.aiBoard.parentElement, this.aiData);
-    if(this.aiData.isAllSink()){
-      this.greetingsTxt.textContent = `Player Won The Match`;
-      this.greetingsLayout.style.display = 'grid';
-    }
+    if(this.aiData.isAllSink()) Greetings.init('Player');
     this.ai.move(this.playerData);
     Board.boardRender(this.playerBoard.parentElement, this.playerData);
-    if(this.playerData.isAllSink()){
-      this.greetingsTxt.textContent = `AI Won The Match`;
-      this.greetingsLayout.style.display = 'grid';
-    }
+    if(this.playerData.isAllSink()) Greetings.init('AI');
   }
   static restartClick(){
     location.reload();
