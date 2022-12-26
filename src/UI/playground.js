@@ -2,6 +2,7 @@ import GameBoard from "../modules/GameBoard";
 import CreateShip from "./createShips";
 import Board from "./board";
 import AI from "../modules/AI/ai";
+import Greetings from "./greetings";
 
 export default class Playground{
   static init(){
